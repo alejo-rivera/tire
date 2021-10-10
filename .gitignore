@@ -4,6 +4,7 @@ ent/*
 !ent/generate.go
 !ent/schema
 !ent/*_graph.go
+!ent/*_test.go
 
 graph/model
 graph/generated.go

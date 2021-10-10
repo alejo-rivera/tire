@@ -7,10 +7,10 @@ import (
 
 func (u User) ToGraph() *model.User {
 	return &model.User{
-		ID:           fmt.Sprintf("%d", u.ID),
-		Name:         u.Name,
-		MaxHealth:    u.MaxHealth,
-		CurentHealth: u.CurrentHealth,
+		ID:            fmt.Sprintf("%d", u.ID),
+		Name:          u.Name,
+		MaxHealth:     u.MaxHealth,
+		CurrentHealth: u.CurrentHealth,
 	}
 	// if the graph model ever includes items
 	// if items, err := u.Edges.ItemsOrErr();err!=nil(

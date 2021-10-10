@@ -2,7 +2,7 @@ type User {
   id: ID!
   name: String!
   maxHealth: Int!
-  curentHealth: Int!
+  currentHealth: Int!
 }
 type Item {
   id: ID!
