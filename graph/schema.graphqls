@@ -1,0 +1,31 @@
+type User {
+  id: ID!
+  name: String!
+  maxHealth: Int!
+  curentHealth: Int!
+}
+type Item {
+  id: ID!
+  name: String!
+
+}
+
+type Query {
+  allUsers: [User!]!
+  user(name: String!): User!
+  item: [Item]!
+}
+
+input NewUser {
+  name: String!
+  maxHealth: Int!
+}
+input UserHealth{
+  qty: Int!
+}
+
+type Mutation {
+  createUser(input: NewUser!): User!
+  healUser(input: UserHealth!): User!
+  damageUser(input: UserHealth!):User!
+}

@@ -1,4 +1,8 @@
 .vscode
+
 ent/*
 !ent/schema
 !ent/*_graph.go
+
+graph/model
+graph/generated.go
