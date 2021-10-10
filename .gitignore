@@ -1,6 +1,7 @@
-.vscode
 
 ent/*
+!ent/entc.go
+!ent/generate.go
 !ent/schema
 !ent/*_graph.go
 
