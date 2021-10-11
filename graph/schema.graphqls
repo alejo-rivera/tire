@@ -1,31 +1,33 @@
 type User {
   id: ID!
   name: String!
-  maxHealth: Int!
-  currentHealth: Int!
+  email: String!
 }
-type Item {
+type Plant {
   id: ID!
-  name: String!
-
+  type: String!
+  lastWatered: String!
+  birthdate: String!
 }
 
 type Query {
   allUsers: [User!]!
-  user(name: String!): User!
-  item: [Item]!
+  userByName(name: String!): User!
+  userByID(id: ID!): User!
+  allPlants: [Plant!]!
+  plantByID(id: ID!): Plant!
 }
 
 input NewUser {
   name: String!
-  maxHealth: Int!
-}
-input UserHealth{
-  qty: Int!
+  email: String!
+} 
+input NewPlant {
+  type: String!
+  birthdate: String!
 }
 
 type Mutation {
-  createUser(input: NewUser!): User!
-  healUser(input: UserHealth!): User!
-  damageUser(input: UserHealth!):User!
+  createUser(user: NewUser!): User!
+  createPlant(plant: NewPlant!): Plant!
 }

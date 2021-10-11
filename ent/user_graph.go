@@ -7,15 +7,14 @@ import (
 
 func (u User) ToGraph() *model.User {
 	return &model.User{
-		ID:            fmt.Sprintf("%d", u.ID),
-		Name:          u.Name,
-		MaxHealth:     u.MaxHealth,
-		CurrentHealth: u.CurrentHealth,
+		ID:    fmt.Sprintf("%d", u.ID),
+		Name:  u.Name,
+		Email: u.Email,
+		// If the graph model ever includes plants
+		// if plants, err := u.Edges.PlantsOrErr();err!=nil(
+		// 	result.Plants
+		// )
 	}
-	// if the graph model ever includes items
-	// if items, err := u.Edges.ItemsOrErr();err!=nil(
-	// 	result.Items
-	// )
 }
 
 func (u Users) ToGraph() []*model.User {

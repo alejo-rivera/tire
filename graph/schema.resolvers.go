@@ -13,24 +13,19 @@ import (
 	"go.uber.org/zap"
 )
 
-func (r *mutationResolver) CreateUser(ctx context.Context, input model.NewUser) (*model.User, error) {
-	user, err := r.dbClient.User.Create().
-		SetName(input.Name).
-		SetMaxHealth(input.MaxHealth).
-		SetCurrentHealth(input.MaxHealth).
+func (r *mutationResolver) CreateUser(ctx context.Context, user model.NewUser) (*model.User, error) {
+	dbUser, err := r.dbClient.User.Create().
+		SetName(user.Name).
+		SetEmail(user.Email).
 		Save(ctx)
 	if err != nil {
-		r.Error("create_user_in_database", zap.String("user_name", input.Name), zap.Error(err))
+		r.Error("create_user_in_database", zap.String("user_name", user.Name), zap.Error(err))
 		return nil, err
 	}
-	return user.ToGraph(), nil
+	return dbUser.ToGraph(), nil
 }
 
-func (r *mutationResolver) HealUser(ctx context.Context, input model.UserHealth) (*model.User, error) {
-	panic(fmt.Errorf("not implemented"))
-}
-
-func (r *mutationResolver) DamageUser(ctx context.Context, input model.UserHealth) (*model.User, error) {
+func (r *mutationResolver) CreatePlant(ctx context.Context, plant model.NewPlant) (*model.Plant, error) {
 	panic(fmt.Errorf("not implemented"))
 }
 
@@ -43,7 +38,7 @@ func (r *queryResolver) AllUsers(ctx context.Context) ([]*model.User, error) {
 	return ent.Users(users).ToGraph(), nil
 }
 
-func (r *queryResolver) User(ctx context.Context, name string) (*model.User, error) {
+func (r *queryResolver) UserByName(ctx context.Context, name string) (*model.User, error) {
 	user, err := r.dbClient.User.Query().
 		Where(
 			user.Name(name),
@@ -56,7 +51,15 @@ func (r *queryResolver) User(ctx context.Context, name string) (*model.User, err
 	return user.ToGraph(), nil
 }
 
-func (r *queryResolver) Item(ctx context.Context) ([]*model.Item, error) {
+func (r *queryResolver) UserByID(ctx context.Context, id string) (*model.User, error) {
+	panic(fmt.Errorf("not implemented"))
+}
+
+func (r *queryResolver) AllPlants(ctx context.Context) ([]*model.Plant, error) {
+	panic(fmt.Errorf("not implemented"))
+}
+
+func (r *queryResolver) PlantByID(ctx context.Context, id string) (*model.Plant, error) {
 	panic(fmt.Errorf("not implemented"))
 }
 

@@ -10,30 +10,26 @@ import (
 func TestToGraph(t *testing.T) {
 	expectedGraphUsers := []*model.User{
 		{
-			Name:          "alejo",
-			CurrentHealth: 10,
-			MaxHealth:     10,
-			ID:            "0",
+			Name:  "alejo",
+			Email: "alejorivera@protonmail.com",
+			ID:    "0",
 		},
 		{
-			Name:          "ErrorOnLine1024",
-			CurrentHealth: 50,
-			MaxHealth:     50,
-			ID:            "1",
+			Name:  "ErrorOnLine1024",
+			Email: "test@neomontecito.com",
+			ID:    "1",
 		},
 	}
 	dbUsers := Users{
 		{
-			Name:          "alejo",
-			CurrentHealth: 10,
-			MaxHealth:     10,
-			ID:            0,
+			Name:  "alejo",
+			Email: "alejorivera@protonmail.com",
+			ID:    0,
 		},
 		{
-			Name:          "ErrorOnLine1024",
-			CurrentHealth: 50,
-			MaxHealth:     50,
-			ID:            1,
+			Name:  "ErrorOnLine1024",
+			Email: "test@neomontecito.com",
+			ID:    1,
 		},
 	}
 	graphUsers := dbUsers.ToGraph()
