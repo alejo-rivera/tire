@@ -6,6 +6,7 @@ package graph
 import (
 	"context"
 	"fmt"
+	"strconv"
 	"tire/ent"
 	"tire/ent/user"
 	"tire/graph/model"
@@ -52,7 +53,20 @@ func (r *queryResolver) UserByName(ctx context.Context, name string) (*model.Use
 }
 
 func (r *queryResolver) UserByID(ctx context.Context, id string) (*model.User, error) {
-	panic(fmt.Errorf("not implemented"))
+	intID, err := strconv.Atoi(id)
+	if err != nil {
+		r.Error("converting_id_to_int", zap.String("user_id", id), zap.Error(err))
+		return nil, err
+	}
+	user, err := r.dbClient.User.Query().
+		Where(user.ID(intID)).
+		Only(ctx)
+	if err != nil {
+		r.Error("serching_user_in_database", zap.Int("user_id", intID), zap.Error(err))
+		return nil, err
+	}
+	return user.ToGraph(), nil
+
 }
 
 func (r *queryResolver) AllPlants(ctx context.Context) ([]*model.Plant, error) {

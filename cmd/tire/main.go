@@ -8,7 +8,7 @@ import (
 )
 
 var CLI struct {
-	Serve serveCmd `cmd:"" help:"Run as app  server"`
+	Serve serveCmd `cmd:"" help:"Run as app server"`
 }
 
 func main() {
