@@ -1,19 +1,16 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
+import { StatusBar } from "expo-status-bar";
+import React from "react";
 import { View, StyleSheet } from "react-native";
-import Inventory from "./src/inventory";
-import {
-  ApolloClient,
-  InMemoryCache,
-  ApolloProvider,
-} from "@apollo/client";
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import Inventory from "./src/Inventory";
+import UserScreen from "./src/UserScreen";
+import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 const client = new ApolloClient({
-  // TODO Set up CI/CD and map this to an internet IP 
-  uri: 'http://192.168.40.17:8181/query',
-  cache: new InMemoryCache()
+  // TODO Set up CI/CD and map this to an internet IP
+  uri: "http://192.168.0.26:8181/query",
+  cache: new InMemoryCache(),
 });
 
 const Stack = createNativeStackNavigator();
@@ -23,11 +20,19 @@ export default function App() {
     <ApolloProvider client={client}>
       <NavigationContainer>
         <Stack.Navigator>
-          <Stack.Screen name="Home" component={HomeScreen} options={{ title: 'Welcome' }} />
-          <Stack.Screen name="Profile" component={ProfileScreen} />
+          <Stack.Screen
+            name="Inventory"
+            component={Inventory}
+            options={{ title: "Inventory" }}
+          />
+          <Stack.Screen
+            name="Users"
+            component={UserScreen}
+            options={{ title: "Users" }}
+          />
         </Stack.Navigator>
         <View style={styles.container}>
-          <Inventory />
+          <UserScreen />
           <StatusBar style="auto" />
         </View>
       </NavigationContainer>
@@ -37,8 +42,8 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "center",
   },
 });

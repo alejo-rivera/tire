@@ -66,7 +66,6 @@ func (r *queryResolver) UserByID(ctx context.Context, id string) (*model.User, e
 		return nil, err
 	}
 	return user.ToGraph(), nil
-
 }
 
 func (r *queryResolver) AllPlants(ctx context.Context) ([]*model.Plant, error) {
